@@ -3,6 +3,10 @@ const app= express();
 const mongoose=require("mongoose");
 const path=require("path");
 const Chat = require("./models/chat.js")
+require('dotenv').config()//env variable
+
+
+dbpath=process.env.mongoDB;
 
 app.set("views",path.join(__dirname,"views"));  
 app.set("view engine","ejs");
@@ -14,23 +18,23 @@ main()
 .catch((err) =>  console.log(err));
 
 async function main(){
-    await mongoose.connect("mongodb+srv://ketan24:eFHU4GMHgOBy0Ilc@cluster0.h0ip0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+    await mongoose.connect(dbpath)
 }
 
-let chat1= new Chat({
-    from:"neha",
-    to:"priya",
-    msg:"send me your exam sheet",
-    created_at: new Date(),
-})
+// let chat1= new Chat({
+//     from:"neha",
+//     to:"priya",
+//     msg:"send me your exam sheet",
+//     created_at: new Date(),
+// })
 
-chat1.save()
-        .then((res)=>{
-            console.log(res);
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
+// chat1.save()
+//         .then((res)=>{
+//             console.log(res);
+//         })
+//         .catch((err)=>{
+//             console.log(err);
+//         })
 
 
 
